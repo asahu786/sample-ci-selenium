@@ -7,7 +7,7 @@
 
   <groupId>com.galaxe.sampleci</groupId>
   <artifactId>spring-boot-app</artifactId>
-  <version>1.0.0</version>
+  <version>3.3.2</version>
   <packaging>jar</packaging>
 
   <parent>
