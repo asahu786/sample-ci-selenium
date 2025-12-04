@@ -1,0 +1,32 @@
+# Maven build output
+target/
+*.log
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Eclipse workspace metadata (if accidentally copied)
+.metadata/
+bin/
+
+# IntelliJ IDEA project files (if teammates use IntelliJ)
+*.iml
+.idea/
+
+# VS Code project files (if teammates use VS Code)
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Selenium / TestNG reports
+test-output/
+surefire-reports/
+emailable-report.html
+
+# Temporary files
+*.tmp
+*.swp
