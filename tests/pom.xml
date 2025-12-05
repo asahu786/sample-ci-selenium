@@ -9,7 +9,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>3.3.2</version>
-    <relativePath/> <!-- ensures dependency management -->
+    <relativePath/>
   </parent>
 
   <groupId>com.galaxe.sampleci</groupId>
