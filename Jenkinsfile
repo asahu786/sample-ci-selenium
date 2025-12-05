@@ -37,6 +37,9 @@ pipeline {
 
           // Windows-safe sleep to give app time to start
           bat 'ping -n 20 127.0.0.1 > nul'
+
+          // Health check to confirm app is listening
+          bat 'curl -s http://localhost:8080/ || exit 1'
         }
       }
     }
