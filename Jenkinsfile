@@ -17,7 +17,7 @@ pipeline {
         ansiColor('xterm') {
           dir('app') {
             bat 'mvn -version'
-            sh 'mvn -B clean package'
+            bat 'mvn -B clean package'
           }
         }
       }
@@ -25,8 +25,8 @@ pipeline {
     stage('Compose Up') {
       steps {
         ansiColor('xterm') {
-          sh 'docker compose up --build -d'
-          sh 'sleep 10' // give app + grid a moment to start
+          bat 'docker compose up --build -d'
+          bat 'sleep 10' // give app + grid a moment to start
         }
       }
     }
@@ -34,7 +34,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           dir('tests') {
-            sh 'mvn -B test -DsuiteXmlFile=testng.xml'
+            bat 'mvn -B test -DsuiteXmlFile=testng.xml'
           }
         }
       }
@@ -43,7 +43,7 @@ pipeline {
   post {
     always {
       ansiColor('xterm') {
-        sh 'docker compose down || true'
+        bat 'docker compose down || true'
         archiveArtifacts artifacts: 'app/target/*.jar, tests/target/surefire-reports/**, tests/target/testng-results.xml', fingerprint: true
         junit 'tests/target/surefire-reports/*.xml'
       }
