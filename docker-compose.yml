@@ -26,4 +26,4 @@ services:
       dockerfile: Dockerfile
     container_name: springboot-app
     ports:
-      - "8089:8080"
+      - "8089:8089"
