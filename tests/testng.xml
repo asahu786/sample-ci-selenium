@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suite name="SampleSuite" verbose="1">
-  <test name="UIAutomationTests">
-    <classes>
-      <class name="com.galaxe.sampleci.ui.HelloPageTest"/>
-    </classes>
-  </test>
-</suite>

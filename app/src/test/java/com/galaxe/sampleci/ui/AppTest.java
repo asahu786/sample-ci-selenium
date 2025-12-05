@@ -1,4 +1,4 @@
-package com.galaxe.sampleci;
+package com.galaxe.sampleci.ui;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,7 +12,7 @@ public class AppTest {
      * Rigorous Test :-)
      */
     @Test
-    public void testApp() {
+    public void sanityTest() {
         // TestNG uses Assert instead of JUnit's assertTrue
         Assert.assertTrue(true, "App should run without error0");
     }

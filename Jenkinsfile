@@ -44,8 +44,8 @@ pipeline {
     stage('Run UI Tests (TestNG)') {
       steps {
         ansiColor('xterm') {
-          dir('tests') {
-            bat 'mvn -B test -DsuiteXmlFile=testng.xml'
+          dir('app') {
+            bat 'mvn -B test'
           }
         }
       }
