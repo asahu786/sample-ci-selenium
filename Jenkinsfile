@@ -14,6 +14,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           dir('app') {
+            sh 'mvn -version'
             sh 'mvn -B clean package'
           }
         }
