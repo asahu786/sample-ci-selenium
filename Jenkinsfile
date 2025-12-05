@@ -66,8 +66,13 @@ pipeline {
     always {
       ansiColor('xterm') {
         bat 'docker compose down'
-       archiveArtifacts artifacts: 'app/target/*.jar, app/test-output/**', fingerprint: true
-      publishTestNGResults testResultsPattern: 'app/test-output/testng-results.xml'
+       archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+
+        // Publish TestNG results using JUnit-compatible XMLs
+        junit '**/target/surefire-reports/*.xml'
+
+        // Optionally archive HTML reports if you generate them
+        archiveArtifacts artifacts: '**/target/surefire-reports/*.html', fingerprint: true
       }
     }
   }
