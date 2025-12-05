@@ -54,9 +54,9 @@ pipeline {
     stage('Run UI Tests (TestNG)') {
       steps {
         ansiColor('xterm') {
-          dir('app') {
+         dir('.') {
             
-            bat 'mvn -B -pl selenium-tests -am test'
+            bat 'mvn -B -pl <real-test-module-name> -am test'
           }
         }
       }
@@ -70,7 +70,7 @@ pipeline {
        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
 
         // Publish TestNG results using JUnit-compatible XMLs
-        junit '**/target/surefire-reports/*.xml'
+        junit '**/<real-test-module-name>/target/surefire-reports/*.xml'
 
         // Optionally archive HTML reports if you generate them
         archiveArtifacts artifacts: '**/target/surefire-reports/*.html', fingerprint: true
