@@ -46,7 +46,8 @@ pipeline {
       ansiColor('xterm') {
         bat 'docker compose down'
         archiveArtifacts artifacts: 'app/target/*.jar, tests/target/surefire-reports/**, tests/target/testng-results.xml', fingerprint: true
-        junit 'tests/target/testng-results.xml'
+        junit allowEmptyResults: true, testResults: 'tests/target/surefire-reports/*.xml, tests/target/testng-results.xml'
+
       }
     }
   }
