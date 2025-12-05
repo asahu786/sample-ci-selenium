@@ -30,7 +30,9 @@ pipeline {
           bat 'docker compose down || exit 0'
           bat 'docker rm -f selenium-hub || exit 0'
           bat 'docker rm -f springboot-app || exit 0'
-          bat 'docker rm -f chrome-node || exit 0'
+          bat 'docker rm -f selenium-chrome || exit 0'
+          bat 'docker network prune -f || exit 0'
+
 
           // Start fresh environment
           bat 'docker compose up --build -d'
@@ -55,8 +57,9 @@ pipeline {
     always {
       ansiColor('xterm') {
         bat 'docker compose down'
-        archiveArtifacts artifacts: 'app/target/*.jar, tests/target/surefire-reports/**, tests/target/testng-results.xml', fingerprint: true
-        junit allowEmptyResults: true, testResults: 'tests/target/surefire-reports/*.xml, tests/target/testng-results.xml'
+        archiveArtifacts artifacts: 'app/target/*.jar, app/target/surefire-reports/**, app/target/testng-results.xml', fingerprint: true
+        junit allowEmptyResults: true, testResults: 'app/target/surefire-reports/*.xml, app/target/testng-results.xml'
+        
       }
     }
   }
