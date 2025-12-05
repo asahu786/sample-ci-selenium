@@ -71,7 +71,7 @@ pipeline {
         // Publish TestNG results using JUnit-compatible XMLs
         junit '**/target/surefire-reports/*.xml'
         // Archive HTML reports for viewing
-        archiveArtifacts artifacts: 'tests/test-output/*.html', fingerprint: true
+        
       }
     }
   }
