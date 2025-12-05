@@ -5,7 +5,7 @@ services:
       context: ./app
       dockerfile: Dockerfile
     environment:
-      - SERVER_PORT=8089   # tell Spring Boot to bind to 8089 internally
+      - SERVER_PORT=8089   # tell Spring that  Boot to bind to 8089 internally
     ports:
       - "8089:8089"        # host 8089 → container 8089
 

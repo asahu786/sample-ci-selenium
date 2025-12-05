@@ -35,7 +35,7 @@ public class HelloPageTest {
         WebElement body = driver.findElement(By.tagName("body"));
         String bodyText = body.getText();
         System.out.println("Page body text: " + bodyText);
-        Assert.assertTrue(bodyText.contains("Hello World"), "Page should contain Hello World");
+        Assert.assertTrue(bodyText.contains("Hello World Sir"), "Page should contain Hello World");
     }
 
     @AfterClass
