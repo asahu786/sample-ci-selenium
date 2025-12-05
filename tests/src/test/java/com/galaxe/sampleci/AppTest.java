@@ -14,6 +14,6 @@ public class AppTest {
     @Test
     public void testApp() {
         // TestNG uses Assert instead of JUnit's assertTrue
-        Assert.assertTrue(true, "App should run without errors");
+        Assert.assertTrue(true, "App should run without errors1");
     }
 }
