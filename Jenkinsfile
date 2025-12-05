@@ -1,9 +1,8 @@
 pipeline {
   agent any
 
-  // Add triggers here
   triggers {
-    githubPush()   // or gitlabPush(), depending on plugin installed
+    githubPush()
   }
 
   tools {
@@ -44,8 +43,10 @@ pipeline {
 
           bat 'docker compose up --build -d'
 
-          bat 'ping -n 20 127.0.0.1 > nul'
-          bat 'curl -s http://localhost:8089/ || exit 1'
+          // wait longer for app startup
+          bat 'ping -n 40 127.0.0.1 > nul'
+          // health check
+          bat 'curl -s http://localhost:8089/actuator/health || exit 1'
         }
       }
     }
@@ -66,7 +67,7 @@ pipeline {
       ansiColor('xterm') {
         bat 'docker compose down'
         archiveArtifacts artifacts: 'app/target/*.jar, app/target/surefire-reports/**, app/target/testng-results.xml', fingerprint: true
-        junit allowEmptyResults: true, testResults: 'app/target/surefire-reports/*.xml, app/target/testng-results.xml'
+        junit testResults: 'app/target/surefire-reports/*.xml, app/target/testng-results.xml'
       }
     }
   }
