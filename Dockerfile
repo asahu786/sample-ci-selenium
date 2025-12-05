@@ -9,7 +9,7 @@ WORKDIR /app
 COPY app/target/spring-boot-app-3.3.2.jar app.jar
 
 
-# Expose the port your Spring Boot app runs on
+# Expose the port your Spring Boot app runs on ok fine
 EXPOSE 8080
 
 # Run the JAR
