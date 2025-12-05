@@ -4,7 +4,7 @@
 <suite name="SampleSuite">
   <test name="UIAutomationTests">
     <classes>
-      <class name="/sample-ci-selenium/app/src/test/java/com/galaxe/sampleci/ui/HelloPageTest.java"/>
+      <class name="/sample-ci-selenium/tests/src/test/java/com/galaxe/sampleci/ui/HelloPageTest.java"/>
     </classes>
   </test>
 </suite>
