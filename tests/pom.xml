@@ -30,22 +30,11 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Spring Boot Test (explicit version required without parent) -->
+    <!-- Optional: Spring Boot core (without test starter) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
+      <artifactId>spring-boot-starter</artifactId>
       <version>3.3.2</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.junit.vintage</groupId>
-          <artifactId>junit-vintage-engine</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
   </dependencies>
 
@@ -69,7 +58,7 @@
         <version>3.2.5</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+            <suiteXmlFile>src/test/resourses/testng.xml</suiteXmlFile>
           </suiteXmlFiles>
         </configuration>
       </plugin>

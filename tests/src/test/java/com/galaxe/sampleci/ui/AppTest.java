@@ -12,7 +12,7 @@ public class AppTest {
      * Rigorous Test :-)
      */
     @Test
-    public void sanityTest() {
+    public void regressionTests() {
         // TestNG uses Assert instead of JUnit's assertTrue
         Assert.assertTrue(true, "App should run without error0");
     }
