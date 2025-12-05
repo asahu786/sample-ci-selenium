@@ -1,5 +1,7 @@
 pipeline {
   agent any
+  tools{
+  maven 'Maven_3'}
   options {
     skipDefaultCheckout(true)
     timestamps()
