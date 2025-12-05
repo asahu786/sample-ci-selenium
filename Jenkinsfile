@@ -26,13 +26,17 @@ pipeline {
     stage('Compose Up') {
       steps {
         ansiColor('xterm') {
-          // Clean up any old containers before starting
+          // Clean up any old containers and free ports before starting
           bat 'docker compose down || exit 0'
           bat 'docker rm -f selenium-hub || exit 0'
+          bat 'docker rm -f mybasicpipeline-springboot-app-1 || exit 0'
+          bat 'docker rm -f mybasicpipeline-chrome-node-1 || exit 0'
+
           // Bring up fresh environment
           bat 'docker compose up --build -d'
+
           // Windows-safe sleep to give app time to start
-          bat 'ping -n 15 127.0.0.1 > nul'
+          bat 'ping -n 20 127.0.0.1 > nul'
         }
       }
     }
