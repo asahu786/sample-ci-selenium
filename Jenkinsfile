@@ -37,7 +37,7 @@ pipeline {
 
           // Wait for app to start
           bat 'ping -n 20 127.0.0.1 > nul'
-          bat 'curl -s http://localhost:8080/ || exit 1'
+          bat 'curl -s http://localhost:8089/ || exit 1'
         }
       }
     }
