@@ -1,58 +1,38 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>3.2.5</version>
+      <configuration>
+        <!-- Point to your TestNG suite -->
+        <suiteXmlFiles>
+          <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+        </suiteXmlFiles>
 
-    <groupId>com.galaxe.sampleci</groupId>
-    <artifactId>spring-boot-app</artifactId>
-    <version>3.3.2</version>
-    <packaging>jar</packaging>
+        <!-- Optional: if your test classes don’t match defaults, relax includes -->
+        <includes>
+          <include>**/*.java</include>
+        </includes>
 
-    <properties>
-        <java.version>17</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-    </properties>
+        <!-- Ensure TestNG is the provider -->
+        <properties>
+          <property>
+            <name>listener</name>
+            <value>org.testng.reporters.XMLReporter</value>
+          </property>
+        </properties>
 
-    <dependencies>
-        <!-- Spring Boot starter -->
+        <!-- Make failures fail the build -->
+        <testFailureIgnore>false</testFailureIgnore>
+      </configuration>
+      <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>7.10.2</version>
         </dependency>
-
-        <!-- TestNG for testing -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <!-- Spring Boot Maven Plugin -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <!-- Surefire plugin to run TestNG and generate JUnit-style XML reports -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-                <configuration>
-                    <!-- Point to your TestNG suite file -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                    <!-- Ensure reports go to target/surefire-reports -->
-                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
+      </dependencies>
+    </plugin>
+  </plugins>
+</build>

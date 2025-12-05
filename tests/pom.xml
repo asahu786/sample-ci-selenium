@@ -60,6 +60,7 @@
           <suiteXmlFiles>
             <suiteXmlFile>src/test/resourses/testng.xml</suiteXmlFile>
           </suiteXmlFiles>
+          <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
         </configuration>
       </plugin>
     </plugins>

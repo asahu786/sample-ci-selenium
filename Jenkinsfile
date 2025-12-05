@@ -55,7 +55,8 @@ pipeline {
       steps {
         ansiColor('xterm') {
           dir('app') {
-            bat 'mvn -B test'
+            
+            bat 'mvn -B -pl selenium-tests -am test'
           }
         }
       }
