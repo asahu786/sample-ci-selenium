@@ -1,7 +1,8 @@
 pipeline {
   agent any
-  tools{
-  maven 'Maven_3'}
+  tools {
+    maven 'Maven_3'
+  }
   options {
     skipDefaultCheckout(true)
     timestamps()
@@ -26,7 +27,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           bat 'docker compose up --build -d'
-          bat 'sleep 10' // give app + grid a moment to start
+          bat 'timeout /t 10' // Windows sleep
         }
       }
     }
@@ -43,7 +44,7 @@ pipeline {
   post {
     always {
       ansiColor('xterm') {
-        bat 'docker compose down || true'
+        bat 'docker compose down'
         archiveArtifacts artifacts: 'app/target/*.jar, tests/target/surefire-reports/**, tests/target/testng-results.xml', fingerprint: true
         junit 'tests/target/surefire-reports/*.xml'
       }
