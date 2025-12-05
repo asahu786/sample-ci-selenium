@@ -54,9 +54,8 @@ pipeline {
     stage('Run UI Tests (TestNG)') {
       steps {
         ansiColor('xterm') {
-         dir('.') {
-            
-            bat 'mvn -B -pl <real-test-module-name> -am test'
+          dir('tests') {
+            bat 'mvn -B test'
           }
         }
       }
@@ -67,13 +66,13 @@ pipeline {
     always {
       ansiColor('xterm') {
         bat 'docker compose down'
-       archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+        archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
 
         // Publish TestNG results using JUnit-compatible XMLs
-        junit '**/<real-test-module-name>/target/surefire-reports/*.xml'
+        junit 'tests/test-output/TEST-*.xml'
 
-        // Optionally archive HTML reports if you generate them
-        archiveArtifacts artifacts: '**/target/surefire-reports/*.html', fingerprint: true
+        // Archive HTML reports for viewing
+        archiveArtifacts artifacts: 'tests/test-output/*.html', fingerprint: true
       }
     }
   }
