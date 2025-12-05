@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-
-<suite name="SampleSuite">
+<suite name="SampleSuite" verbose="1">
   <test name="UIAutomationTests">
     <classes>
-      <class name="/sample-ci-selenium/tests/src/test/java/com/galaxe/sampleci/ui/HelloPageTest.java"/>
+      <class name="com.galaxe.sampleci.ui.HelloPageTest"/>
     </classes>
   </test>
 </suite>

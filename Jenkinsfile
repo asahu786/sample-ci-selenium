@@ -27,7 +27,7 @@ pipeline {
       steps {
         ansiColor('xterm') {
           bat 'docker compose up --build -d'
-          bat 'ping -n 10 127.0.0.1 > nul' // Windows-safe sleep
+          bat 'ping -n 20 127.0.0.1 > nul' // Windows-safe sleep
         }
       }
     }

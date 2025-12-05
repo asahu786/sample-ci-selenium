@@ -6,6 +6,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,21 +22,23 @@ public class HelloPageTest {
     @BeforeClass
     public void setUp() throws MalformedURLException {
         // Configure Chrome options
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless"); // run headless in CI
+    	ChromeOptions options = new ChromeOptions();
+    	options.addArguments("--headless=new");
+    	options.addArguments("--no-sandbox");
+    	options.addArguments("--disable-dev-shm-usage");
 
         // Connect to Selenium Grid (hub must be running in Docker Compose)
         driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
+
     }
 
     @Test
     public void testOpenHomePage() {
-        driver.get("http://localhost:8081"); // your Spring Boot app URL
+    	driver.get("http://springboot-app:8081/");
         String title = driver.getTitle();
         System.out.println("Page title is: " + title);
-
-        // Simple assertion
-        assert title != null && !title.isEmpty() : "Page title should not be empty";
+        String bodyText = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue(bodyText.contains("Hello World"), "Page should contain Hello World");
     }
 
     @AfterClass
